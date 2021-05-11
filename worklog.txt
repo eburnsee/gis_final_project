@@ -1,0 +1,21 @@
+# Work Log for DAT 241 Final Project
+
+1. Add polygon layer of Pittsburgh neighborhoods with a shape file from WPRDC. Rename "Neighborhoods."
+2. Add polygon layer of Pittsburgh market value analysis by census tract from WPRDC. Under properties for this layer, change the symbology to chatagorized according to the MVA clusters for 2016. Choose the spectral color ramp. Remove the categories for uncategorized tracts. Rename layer "Market Value Analysis Groups". 
+3. Duplicate the "Market Value Analysis Groups" layer. Change symbology to graduated according to attribute/value "MSP13_16", or median sales price. Change the color ramp to spectral. Organize mode by natural breaks, resulting in five distinct groupings by median sales price. Rename layer to "Census Tracts by Median Residential Sales Price".
+4.  Add shape file for Pittsburgh Zoning from WPRDC. Under properties, change symbology to catagorized by "Legend Type", or the general zoning type. Change name to "Pittsburgh Zoning".
+5. Duplicate "Pittsburgh Zoning" layer. Under properties, change sybology to catagorized by "full_zonin", which is a less generalized zoning grouping. Rename layer to "Pittsburgh Zoning Focused".
+6. Add delimited text layer of publicly available properties. Add geometric properties by changing X axis to "latitude" attribute and Y axis to "longitude" attribute.
+7. Examine Allegheny County property value assessments CSV from WPRDC. Contains address data but no coordinates for points. Concatenate address number with address street into "address" column. Trim CSV to remove all addresses outside Pittsburgh city proper. Trim excess columns. ~102,000 records remain. Download MMQGIS plugin for geocoding addresses. Attempt geocoding twice. QGIS crashes both times. CSV too large. Attempt geocoding with "gpsvisualizer.com/geocoding". After 1 hour ~1000 records geocoded. 
+8. Find Allegheny County addresses points CSV on PASDA. Contains ~65,000 records. Add it as point layer. 
+9. Add trimmed CSV of Allegheny County property assessments with no geometric/spacial parameters. Under properties, perform join of property assessments and address points on address. ~57,000 records remain w/ property value information.    
+10. Add shapefile of census tracts from WPRDC.
+11. Add shapefile of census blocks from WPRDC.
+12. Download median household income csv for 2019 from American Community Survey. Trim unecessary data and trim geo_id. 
+13. On property assessment point layer, on the attribute table, open the field calculator and perform the following equation for each row: (FAIRMARKETTOTAL/100)*2.28. FAIRMARKETTOTAL is the assessed value of a house and the land it is on. 2.28 is roughly the property tax rates for residential properties in pittsburgh. So, the column which has been caclulated is the tax burden per address point.
+14. Then, change the symbology of our address point layer to graduated by the new column, property tax burden. Change the color ramp to magma.
+15. Add delimited text layer of median household income for Pittsburgh census blocks from American Community Survey. Join to Pittsburgh blocks layer on the GEOID. 
+16. Open the processing toolbox, use the "Refactor fields" tool to change the median income by census block field to integer data type.
+17. Use "Join Attributes by Location" tool, joining the MHI per census block to each address point, depending on which census block the address point is in.
+18. Refactor the MHI column to interger data type.
+19. Use the field calculator to create a field using the following formula: (propertytax/MHI)*100 which produces property tax as a percentage of median income.
