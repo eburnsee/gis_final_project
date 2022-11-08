@@ -44,5 +44,5 @@ Local government ought to ease the property tax burden of relatively low income 
 ## Limitations
 This analysis was limited in part by incomplete datasets. The point layers I combined to get the geocoded points for residential properties in Pittsburgh ended up reducing the dataset to around 65,000 points, trimmed from the original around 100,000 points. Missing data and differently entered data such as addresses contributed to this difficulty.
 
-## Future Reasearch
+## Future Research
 For future research one would need to consider the differences in residential property type. Likewise, the analysis of incomes should be expanded beyond solely median income.
